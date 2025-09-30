@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo do Yamal</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      background: linear-gradient(135deg, white, #001f3f);
+      text-align: center;
+    }
+
+    .menu h1 {
+      font-size: 2.5rem;
+      color: black;
+      margin-bottom: 40px;
+    }
+
+    .menu button {
+      background-color: black;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    .game-screen {
+      display: none;
+      height: 100%;
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .game-screen img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    .buttons button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .final-message {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: white;
+      text-shadow: 2px 2px 8px black;
+    }
+
+    .dead {
+      color: #001f3f;
+      font-size: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="menu" id="menu">
+    <h1>Jogo do Yamal</h1>
+    <button onclick="startGame()">Start</button>
+  </div>
+
+  <div class="game-screen" id="game">
+    <img id="bg" src="" alt="Background">
+    <div class="final-message" id="message"></div>
+    <div class="buttons" id="choices"></div>
+  </div>
+
+  <script>
+    function startGame() {
+      document.getElementById('menu').style.display = 'none';
+      document.getElementById('game').style.display = 'flex';
+      document.getElementById('bg').src = 'https://cdn.discordapp.com/attachments/1415077934753910854/1422587179963646002/c44130ad50fb2f1ecf4a4783aaab0c02.jpg?ex=68dd370e&is=68dbe58e&hm=8d1b53872e4d9c021ed6bfd40fc547869f6c05dfa0983ef1feeef9d3cb5dd1a0&';
+      document.getElementById('message').innerText = 'VENDE O YAMAL PRA INTER PORFAVOR ♥️♥️♥️';
+      document.getElementById('message').classList.remove('dead');
+
+      const choices = document.getElementById('choices');
+      choices.innerHTML = `
+        <button onclick="chooseOption('sim')">Sim</button>
+        <button onclick="chooseOption('nao')">Não</button>
+      `;
+    }
+
+    function chooseOption(option) {
+      const bg = document.getElementById('bg');
+      const message = document.getElementById('message');
+      const choices = document.getElementById('choices');
+
+      if (option === 'sim') {
+        bg.src = 'https://cdn.discordapp.com/attachments/1415077934753910854/1422586566462668991/file_00000000681c61f99309762ce926bdcb.png?ex=68dd367b&is=68dbe4fb&hm=7ebbd310e9360d80658cdc3c4480e210fbeaefc5df4390f82acbd7fac5614d82&';
+        message.innerText = 'OBRIGADO BARÇA ♥️♥️♥️♥️';
+        message.classList.remove('dead');
+        choices.innerHTML = '';
+      } else {
+        bg.src = 'https://cdn.discordapp.com/attachments/1398065550273548522/1422587637583188082/426867bb6b80ccad834c848d54ad2d72.jpg?ex=68dd377b&is=68dbe5fb&hm=223c117b775e2716122cf6dae12878ca4642f3ea2a720af0bf2623f53a6a80f7&';
+        message.innerText = 'yamal ia dead';
+        message.classList.add('dead');
+        choices.innerHTML = '';
+      }
+    }
+  </script>
+</body>
+</html>
